@@ -25,7 +25,7 @@ class Database:
             conn.commit() 
     
     def add_promt(self, title, positive, negative="",note="",tags=""):
-        '''新增資料'''
+        '''新增 row'''
 
         with self._get_conn() as conn:
             sql = Prompt_sql.ADD_PROMPT
@@ -33,14 +33,16 @@ class Database:
             conn.commit()
 
     def get_all_prompts(self):  
+        '''查閱 row'''
+
         with self._get_conn() as conn:
             sql = Prompt_sql.GET_ALL_PROMPT
             cursor = conn.execute(sql) #要建實例，保存回傳值
             return  [dict(row) for row in cursor.fetchall()]
 
-    def update_prompt(self, id, data= dict):
+    def update_prompt(self, id, data: dict):
             '''
-            功能:更新
+            更新 row 內 屬性
             Args:
                 id(int):要跟新資料ID
                 data(dic):更新欄位與數值
@@ -54,3 +56,10 @@ class Database:
             with self._get_conn() as conn:
                 conn.execute(sql, values)
                 conn.commit()
+
+    def delete_prompt(self,id):
+        '''刪除 row'''
+
+        with self._get_conn() as conn:
+            conn.execute(Prompt_sql.DELETE_PROMPT,(int(id),))  # 傳參要為int並放入turple 
+            conn.commit()

@@ -26,3 +26,7 @@ class Prompt_sql():
     UPDATE_PROMPT = """
         UPDATE prompts SET {keys} Where id = ?
         """
+    
+    DELETE_PROMPT = """
+    DELETE FROM prompts WHERE id = ?
+    """
