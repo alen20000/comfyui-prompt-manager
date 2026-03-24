@@ -49,7 +49,7 @@ class Database:
             keys = ",".join([f"{k} = ?"for k in data.keys()])
             values = tuple(data.values())+(id,)
 
-            sql =f"UPDATE prompts SET {keys} WHERE id = ?"
+            sql = Prompt_sql.UPDATE_PROMPT.format(keys=keys)
 
             with self._get_conn() as conn:
                 conn.execute(sql, values)

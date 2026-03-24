@@ -24,5 +24,5 @@ class Prompt_sql():
             """
     
     UPDATE_PROMPT = """
-        UPDATE prompts SET {keys}
+        UPDATE prompts SET {keys} Where id = ?
         """
