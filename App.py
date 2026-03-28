@@ -3,7 +3,7 @@ from routes.prompt import prompt_bp
 
 
 app = Flask(__name__)
-app.register_blueprint(prompt_bp, url_prefix = '/test')
+app.register_blueprint(prompt_bp, url_prefix = '/')
 
 
 if __name__ == '__main__':
