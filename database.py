@@ -24,7 +24,7 @@ class Database:
             conn.execute(sql)
             conn.commit() 
     
-    def add_promt(self, title, positive, negative="",note="",tags=""):
+    def add_prompt(self, title, positive, negative="",note="",tags=""):
         '''新增 row'''
 
         with self._get_conn() as conn:
