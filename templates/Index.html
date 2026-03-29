@@ -17,24 +17,22 @@
         <div class="card mb-4">
             <div class="card-body">
                 <h5 class="card-title">新增 Prompt</h5>
-                <form hx-post="/prompts" hx-target="#prompt-list" hx-swap="innerHTML">
+                <form hx-post="/prompts"  hx-swap="innerHTML">
                     <div class="mb-3">
                         <input type="text" name="title" class="form-control" placeholder="標題" required>
                     </div>
-                    <div class="mb-3">
-                        <textarea name="positive" class="form-control" placeholder="Positive Prompt" required></textarea>
-                    </div>
-                    <div class="mb-3">
-                        <textarea name="negative" class="form-control" placeholder="Negative Prompt"></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary">新增</button>
+
                 </form>
+                    <button type="button"
+                            hx-target="#prompt-list"
+                            hx-get="/get_all_prompts" 
+                            hx-swap="innerHTML"
+                            class="btn btn-secondary mb-3">
+                        顯示所有提示詞
+                    </button>
+                <div id="prompt-list"></div>
             </div>
         </div>
-
-        <!-- Prompt 列表 -->
-        <div id="prompt-list">
-            <!-- 這裡之後會動態填入資料 -->
         </div>
     </div>
 
