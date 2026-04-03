@@ -1,5 +1,5 @@
-from flask import Blueprint,render_template,jsonify
-from database import Database
+from flask import Blueprint,render_template
+from src.database.database import Database
 
 prompt_bp = Blueprint('prompt', __name__)
 

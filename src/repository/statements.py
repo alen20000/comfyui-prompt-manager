@@ -14,7 +14,7 @@ class Prompt_sql():
         """
     
     ADD_PROMPT = """
-             INSERT INTO prompts (title, note, positive, negative, tags)
+            INSERT INTO prompts (title, note, positive, negative, tags)
             VALUES (?, ?, ?, ?, ?)
 
             """

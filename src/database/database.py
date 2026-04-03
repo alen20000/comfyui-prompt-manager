@@ -1,7 +1,7 @@
 import sqlite3
 import os
 from config import path
-from src.statements import Prompt_sql
+from src.repository.statements import Prompt_sql
 
 class Database:
     def __init__(self):
@@ -63,3 +63,8 @@ class Database:
         with self._get_conn() as conn:
             conn.execute(Prompt_sql.DELETE_PROMPT,(int(id),))  # 傳參要為int並放入turple 
             conn.commit()
+
+
+
+if __name__ == "__main__":
+    pass
