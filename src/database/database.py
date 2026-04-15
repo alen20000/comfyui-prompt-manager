@@ -1,7 +1,7 @@
 import sqlite3
 import os
 from config import path
-from src.repository.statements import Prompts_sql
+
 from src.repository.statements import Statement_builder
 from src.utils.decorators.db import db_operation
 '''
@@ -25,7 +25,7 @@ class Database:
         '''建立資料表'''
         with self._get_conn()  as conn:
 
-            sql = (Statement_builder.build_table())
+            sql = Statement_builder.build_table()
 
             conn.execute(sql)
             conn.commit() 
@@ -43,22 +43,18 @@ class Database:
         '''查閱 全部資料'''
 
         with self._get_conn() as conn:
-            sql = Prompts_sql.GET_ALL_PROMPT
+            sql = Statement_builder.build_get_all_prompt()
             cursor = conn.execute(sql) #要建實例，保存回傳值
             return  [dict(row) for row in cursor.fetchall()]
 
-    def update_prompt(self, id, data: dict):
+    def update_prompt(self, id, **kwargs: dict):
             '''
             更新 row 內 屬性
             Args:
                 id(int):要跟新資料ID
                 data(dic):更新欄位與數值
             '''
-
-            keys = ",".join([f"{k} = ?"for k in data.keys()])
-            values = tuple(data.values())+(id,)
-
-            sql = Prompts_sql.UPDATE_PROMPT.format(keys=keys)
+            sql,values = Statement_builder.update_prompt(id,kwargs)
 
             with self._get_conn() as conn:
                 conn.execute(sql, values)
@@ -81,8 +77,10 @@ if __name__ == "__main__":
     # comment="elf in forest",
     # is_word= False
     # )
+    update_dic = {"prompt" : "測試三號"}
+    update_id = "7"
 
-
+    db.update_prompt(int(update_id),**update_dic)
     result = db.delete_prompt(6) 
     result2 = db.get_all_prompts()
     print(result2)
