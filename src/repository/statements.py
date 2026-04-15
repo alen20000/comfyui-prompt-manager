@@ -22,6 +22,7 @@ class Statement_builder():
 
         sql = f"CREATE TABLE IF NOT EXISTS {schema.PromptTable.TABLE_NAME} ({list_to_str}) "
         return sql
+    
     @staticmethod
     def build_insert (data:dict)-> tuple[str, tuple]:
 
@@ -31,6 +32,10 @@ class Statement_builder():
         values = tuple(data.values())
         return sql, values
     
+    @staticmethod
+    def build_delect():
+        sql = "DELETE FROM prompts WHERE id = ?"
+        return sql
 class Prompts_sql():
 
     '''初始化DB'''

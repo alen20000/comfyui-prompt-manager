@@ -4,7 +4,9 @@ from config import path
 from src.repository.statements import Prompts_sql
 from src.repository.statements import Statement_builder
 from src.utils.decorators.db import db_operation
-
+'''
+功能:資料庫API
+'''
 
 class Database:
     def __init__(self):
@@ -38,7 +40,7 @@ class Database:
             conn.commit()
 
     def get_all_prompts(self):  
-        '''查閱 row'''
+        '''查閱 全部資料'''
 
         with self._get_conn() as conn:
             sql = Prompts_sql.GET_ALL_PROMPT
@@ -66,19 +68,26 @@ class Database:
         '''刪除 row'''
 
         with self._get_conn() as conn:
-            conn.execute(Prompts_sql.DELETE_PROMPT,(int(id),))  # 傳參要為int並放入turple 
+            conn.execute(Statement_builder.build_delect(),(int(id),))  # 傳參要為int並放入turple，逗號不能省
             conn.commit()
 
 
 
 if __name__ == "__main__":
     db = Database()
-    db.add_prompt(
-    prompt="森林中的精靈", 
-    prompt_class="quality", 
-    comment="elf in forest",
-    is_word= False
-)
-    result = db.get_all_prompts()
-    print(result)
+    # db.add_prompt(
+    # prompt="測試1號", 
+    # prompt_class="quality", 
+    # comment="elf in forest",
+    # is_word= False
+    # )
+
+
+    result = db.delete_prompt(6) 
+    result2 = db.get_all_prompts()
+    print(result2)
     pass
+
+'''
+py -m src.database.database  根目錄調用指令
+'''
