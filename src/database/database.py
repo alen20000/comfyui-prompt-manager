@@ -77,11 +77,11 @@ if __name__ == "__main__":
     # comment="elf in forest",
     # is_word= False
     # )
-    update_dic = {"prompt" : "測試三號"}
-    update_id = "7"
+    # update_dic = {"prompt" : "測試三號"}
+    # update_id = "7"
 
-    db.update_prompt(int(update_id),**update_dic)
-    result = db.delete_prompt(6) 
+    # db.update_prompt(int(update_id),**update_dic)
+    # result = db.delete_prompt(6) 
     result2 = db.get_all_prompts()
     print(result2)
     pass
