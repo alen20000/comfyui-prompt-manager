@@ -1,5 +1,5 @@
 __pycache__/
 test/
-
+/note.md
 #database
 *.db
