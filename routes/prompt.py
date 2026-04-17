@@ -18,8 +18,11 @@ def test_connection():
 @prompt_bp.route('/get_all_prompts', methods=['GET'])
 def get_all_prompts():
     raw_data = db.get_all_prompts()
-    keys = ['ID','PROMPT','PROMPT_CLASS','COMMENT','IS_WORD']
-    formatted_data = [dict(zip(keys, row)) for row in raw_data]
-    return jsonify(formatted_data)
+
+    return jsonify({
+        "status":"ok",
+        "total":len(raw_data),
+        "data":raw_data
+    })
 
 # def delete_primpts():

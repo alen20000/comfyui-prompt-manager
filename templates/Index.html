@@ -17,26 +17,12 @@
         <div class="card mb-4">
             <div class="card-body">
                 <h5 class="card-title">測試</h5>
-                <!-- <form hx-post="/prompts"  hx-swap="innerHTML">
-                    <div class="mb-3">
-                        <input type="text" name="title" class="form-control" placeholder="標題" required>
-                    </div>
 
-                </form> -->
-                <button type="button"
-                        hx-target="#prompt-list"
-                        hx-get="/get_all_prompts" 
-                        hx-swap="innerHTML"
-                        class="btn btn-secondary mb-3">
-                    顯示所有提示詞
+                <button id="load-btn" class="btn btn-secondary mb-3">
+                    顯示資料
                 </button>
-                <style>
-                    #prompt-list {
-                    background-color: #f0f8ff; /* 淺藍色背景 */
-                    border: 2px solid #000000;  /* 2像素寬的實線藍色邊框 */         /* 給它一個最小高度，不然沒東西時會縮成一條線 */
-                    }
-                </style>
-                <div id="prompt-list">
+
+                <div id="display_result">
                     
                 </div>
             </div>
@@ -44,12 +30,32 @@
 
     </div>
 <script>
-fetch('/get_all_prompts')
-    .then(response => response.json()) // 這裡會自動解析 JSON
-    .then(data => {
-        // 現在你可以直接用 . 存取那 5 個欄位了
-        console.log(data.result[0].title); 
-        console.log(data.result[0].content);
+    const btn = document.querySelector('#load-btn')
+    
+    btn.addEventListener('click', () =>{
+            fetch('/get_all_prompts')
+                .then(res => res.json())   // then完成後會直接給下個then 變數是拋棄式的
+                .then(data =>{
+                    const rows = data.data;
+                    const display_result = document.querySelector('#display_result');
+                    console.log(data);
+
+                    let html = "";
+                    rows.forEach(item => {
+
+                        html +=`
+                        <div class="card mb-2 p-2" style="border: 1px solid #ccc;">
+                            <strong>ID: ${item.id}</strong> | 
+                            <span>內容: ${item.prompt}</span> | 
+                            <small>分類: ${item.prompt_class}</small>
+                        </div>
+                    `;
+                        
+                    });
+
+                    display_result.innerHTML = html;
+                });
+
     });
 </script>
 </body>
