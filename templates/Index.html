@@ -19,12 +19,36 @@
                 <button id="show_all_data" class="btn btn-secondary mb-3">
                     顯示全部資料
                 </button>
+                
                 <button id="delect-display-content-btn" class="btn btn-secondary mb-3">
                     清空顯示板
                 </button>
-                <div id="display_result">
-                    
-                </div>
+                <button id="add_prompt-btn" class="btn btn-secondary mb-3">
+                    新增 Prompt
+                </button>
+                <button id="add_prompt-btn" class="btn btn-secondary mb-3">
+                    刪除 Prompt
+                </button>
+                <button id="add_prompt-btn" class="btn btn-secondary mb-3">
+                    更改 Prompt
+                </button>
+
+            </div>
+            <div class="container mt-5">
+
+                <table id="display_result" class="table table-striped table-hover border">
+                    <thead class="table-light">
+                        <tr>
+                            <th>ID</th>
+                            <th>內容</th>
+                            <th>分類</th>
+                            <th>備註</th>
+                        </tr>
+                    </thead>
+                    <tbody id="data_body">
+                        </tbody>
+                </table>
+
             </div>
         </div>
 
@@ -37,18 +61,19 @@
                 .then(res => res.json())   // then完成後會直接給下個then 變數是拋棄式的
                 .then(data =>{
                     const rows = data.data;
-                    const display_result = document.querySelector('#display_result');
+                    const display_result = document.querySelector('#data_body');
                     console.log(data);
 
                     let html = "";
                     rows.forEach(item => {
 
                         html +=`
-                        <div class="card mb-2 p-2" style="border: 1px solid #ccc;">
-                            <strong>ID: ${item.id}</strong> | 
-                            <span>內容: ${item.prompt}</span> | 
-                            <small>分類: ${item.prompt_class}</small>
-                        </div>
+                        <tr>
+                            <td>${item.id}</td>
+                            <td>${item.prompt}</td>
+                            <td>${item.prompt_class}</td>
+                            <td>${item.comment}</td>
+                        </tr>
                     `;
                         
                     });

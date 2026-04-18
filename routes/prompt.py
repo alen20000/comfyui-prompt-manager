@@ -25,4 +25,16 @@ def get_all_prompts():
         "data":raw_data
     })
 
+@prompt_bp.route('/add_prompt', methods=['POST'])
+def add_prompt():
+    pass
+
+@prompt_bp.route('/delete_prompt', methods=['DELETE'])
+def delete_prompt():
+    pass
+
+@prompt_bp.route('/update_prompt', methods=['PUT'])
+def update_prompt():
+    pass
+
 # def delete_primpts():
