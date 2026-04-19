@@ -16,7 +16,42 @@
         <div class="card mb-4">
             <div class="card-body">
                 <h5 class="card-title">測試</h5>
+                <div class="row g-3">
+                        <div class="col-md-4">
+                            <label class="form-label">ID (流水號)</label>
+                            <input type="number" id="field_id" class="form-control" placeholder="ID欄位">
+                        </div>
 
+                        <div class="col-md-8">
+                            <label class="form-label">類別 (Prompt Class)</label>
+                            <select id="prompt_class" class="form-select">
+                                <option value="quality">Quality (品質)</option>
+                                <option value="style">Style (風格)</option>
+
+                            </select>
+                        </div>
+
+                        <div class="col-12">
+                            <label class="form-label">提示詞欄位</label>
+                            <input type="text" id="field_prompt_content" class="form-control" placeholder="prompt內容">
+                        </div>
+
+                        <div class="col-12">
+                            <label class="form-label">內容描述 (Comment)</label>
+                            <textarea id="field_prompt_comment" class="form-control" rows="2" placeholder="例如：elf in forest"></textarea>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="field_is_word">
+                                <label class="form-check-label" for="field_is_word">
+                                    是否為單詞 (is_word)
+                                </label>
+                            </div>
+                        </div>
+                </div>
+            </div>
+            <div class="card-footer">  
                 <button id="show_all_data" class="btn btn-secondary mb-3">
                     顯示全部資料
                 </button>
@@ -33,8 +68,8 @@
                 <button id="update_prompt-btn" class="btn btn-secondary mb-3">
                     更改 Prompt
                 </button>
-
             </div>
+
             <div class="container mt-5">
 
                 <table id="display_result" class="table table-striped table-hover border">
@@ -55,7 +90,7 @@
         </div>
 
     </div>
-<script src="index.js"></script>
+<!-- <script src="index.js"></script> -->
 <script src="{{ url_for('static', filename='index.js') }}"></script>
 </body>
 </html>

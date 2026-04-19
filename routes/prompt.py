@@ -1,4 +1,4 @@
-from flask import Blueprint,render_template,jsonify
+from flask import Blueprint,render_template,jsonify,request
 from src.database.database import Database
 '''
 路由層API
@@ -27,7 +27,14 @@ def get_all_prompts():
 
 @prompt_bp.route('/add_prompt', methods=['POST'])
 def add_prompt():
-    pass
+    data: dict = request.get_json()
+
+    db.add_prompt(**data)
+
+    return  jsonify({
+        "status":"ok",
+        "message":"新增成功"
+    })
 
 @prompt_bp.route('/delete_prompt', methods=['DELETE'])
 def delete_prompt():

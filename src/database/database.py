@@ -31,7 +31,7 @@ class Database:
             conn.commit() 
     
     def add_prompt(self,**kwargs):
-        '''新增欄位'''
+        '''新增資料'''
 
         with self._get_conn() as conn:
             sql,values = Statement_builder.build_insert(kwargs)
