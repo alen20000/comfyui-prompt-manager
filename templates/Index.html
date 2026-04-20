@@ -14,64 +14,78 @@
         <h1 class="mb-4">Prompt-Management-Assistant</h1>
 
         <div class="card mb-4">
-            <div class="card-body">
-                <h5 class="card-title">測試</h5>
-                <div class="row g-3">
-                        <div class="col-md-4">
-                            <label class="form-label">ID (流水號)</label>
-                            <input type="number" id="field_id" class="form-control" placeholder="ID欄位">
-                        </div>
 
-                        <div class="col-md-8">
-                            <label class="form-label">類別 (Prompt Class)</label>
-                            <select id="prompt_class" class="form-select">
-                                <option value="quality">Quality (品質)</option>
-                                <option value="style">Style (風格)</option>
+            <div class="row g-0 align-items-center "> <!--區1與區2橫向-->
 
-                            </select>
-                        </div>
+                <div class="col-md-2 gap-3  px-3 border-end"> <!--按鈕區-->
+                    <div class="d-grid gap-2">
+                        
+                        <button id="add_prompt-btn" class="btn btn-success btn-lg">
+                            新增 Prompt
+                        </button>
+                        
+                        <button id="show_all_data" class=" btn btn-secondary btn-lg">
+                            顯示全部資料
+                        </button>
+                        
+                        <button id="delect-display-content-btn" class="btn btn-secondary btn-lg">
+                            清空顯示板
+                        </button>
 
-                        <div class="col-12">
-                            <label class="form-label">提示詞欄位</label>
-                            <input type="text" id="field_prompt_content" class="form-control" placeholder="prompt內容">
-                        </div>
+                        <button id="update_prompt-btn" class=" btn btn-secondary btn-lg">
+                            更改 Prompt
+                        </button>
 
-                        <div class="col-12">
-                            <label class="form-label">內容描述 (Comment)</label>
-                            <textarea id="field_prompt_comment" class="form-control" rows="2" placeholder="例如：elf in forest"></textarea>
-                        </div>
+                        <button id="delete_prompt-btn" class="btn btn-danger btn-lg">
+                            刪除 Prompt
+                        </button>
 
-                        <div class="col-12">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="field_is_word">
-                                <label class="form-check-label" for="field_is_word">
-                                    是否為單詞 (is_word)
-                                </label>
-                            </div>
+                    </div>
+                </div>
+
+
+                <div class="col-md-9">
+                    <div class="card-body"><!--參數區-->
+
+                        <div class="row g-3"> 
+                                <div class="col-md-4">
+                                    <label class="form-label">ID (流水號)</label>
+                                    <input type="number" id="field_id" class="form-control" placeholder="ID欄位">
+                                </div>
+
+                                <div class="col-md-8">
+                                    <label class="form-label">類別 (Prompt Class)</label>
+                                    <select id="prompt_class" class="form-select">
+                                        <option value="quality">Quality (品質)</option>
+                                        <option value="style">Style (風格)</option>
+
+                                    </select>
+                                </div>
+
+                                <div class="col-12">
+                                    <label class="form-label">提示詞欄位</label>
+                                    <input type="text" id="field_prompt_content" class="form-control" placeholder="prompt內容">
+                                </div>
+
+                                <div class="col-12">
+                                    <label class="form-label">內容描述 (Comment)</label>
+                                    <textarea id="field_prompt_comment" class="form-control" rows="2" placeholder="例如：elf in forest"></textarea>
+                                </div>
+
+                                <div class="col-12">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="field_is_word">
+                                        <label class="form-check-label" for="field_is_word">
+                                            是否為單詞 (is_word)
+                                        </label>
+                                    </div>
+                                </div>
                         </div>
+                    </div>
                 </div>
             </div>
-            <div class="card-footer">  
-                <button id="show_all_data" class="btn btn-secondary mb-3">
-                    顯示全部資料
-                </button>
-                
-                <button id="delect-display-content-btn" class="btn btn-secondary mb-3">
-                    清空顯示板
-                </button>
-                <button id="add_prompt-btn" class="btn btn-secondary mb-3">
-                    新增 Prompt
-                </button>
-                <button id="delete_prompt-btn" class="btn btn-secondary mb-3">
-                    刪除 Prompt
-                </button>
-                <button id="update_prompt-btn" class="btn btn-secondary mb-3">
-                    更改 Prompt
-                </button>
-            </div>
 
-            <div class="container mt-5">
-
+            <div class="container mt-5" style="max-height: 500px; overflow-y: auto;"> <!--顯示區-->
                 <table id="display_result" class="table table-striped table-hover border">
                     <thead class="table-light">
                         <tr>
@@ -82,7 +96,7 @@
                             <th style="width: 25%;">備註</th>
                         </tr>
                     </thead>
-                    <tbody id="data_body">
+                    <tbody id="data_body" class="table-group-divider">
                         </tbody>
                 </table>
 
