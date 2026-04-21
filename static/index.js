@@ -37,6 +37,22 @@ function _delet_prompt(){
     return payload;
 }
 
+/* 點擊資料列表後，自動往上填入表單 */
+function setFields(id, p_class, prompt, comment) {
+
+    document.getElementById("field_id").value = id;
+    
+
+    document.getElementById("prompt_class").value = p_class;
+    
+
+    document.getElementById("field_prompt_content").value = prompt;
+    
+
+    document.getElementById("field_prompt_comment").value = comment;
+
+    console.log("已選取 ID:", id);
+}
 
 btn_show_all_data.addEventListener('click', () =>{
         fetch('/get_all_prompts')
@@ -50,7 +66,7 @@ btn_show_all_data.addEventListener('click', () =>{
                     //TODO 轉換映射在這
 
                     html +=`
-                    <tr>
+                    <tr onclick="setFields('${item.id}', '${item.prompt_class}', '${item.prompt}', '${item.comment}')" style="cursor: pointer;">
                         <td>${item.id}</td>
                         <td>${item.prompt_class}</td>
                         <td>${item.prompt}</td>
