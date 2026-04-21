@@ -47,6 +47,13 @@ class Database:
             cursor = conn.execute(sql) #要建實例，保存回傳值
             return  [dict(row) for row in cursor.fetchall()]
 
+    def delete_prompt(self,id):
+        '''刪除 row'''
+
+        with self._get_conn() as conn:
+            conn.execute(Statement_builder.build_delect(),(int(id),))  # 傳參要為int並放入turple，逗號不能省
+            conn.commit()
+
     def update_prompt(self, id, **kwargs: dict):
             '''
             更新 row 內 屬性
@@ -60,12 +67,6 @@ class Database:
                 conn.execute(sql, values)
                 conn.commit()
 
-    def delete_prompt(self,id):
-        '''刪除 row'''
-
-        with self._get_conn() as conn:
-            conn.execute(Statement_builder.build_delect(),(int(id),))  # 傳參要為int並放入turple，逗號不能省
-            conn.commit()
 
 
 
@@ -83,6 +84,7 @@ if __name__ == "__main__":
     # db.update_prompt(int(update_id),**update_dic)
     # result = db.delete_prompt(6) 
     result2 = db.get_all_prompts()
+    result2 = db.delete_prompt(1)
     print(result2)
     pass
 

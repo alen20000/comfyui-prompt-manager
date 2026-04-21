@@ -44,6 +44,7 @@ class Statement_builder():
             """
         return sql
     
+    @staticmethod
     def update_prompt(id,data):
         keys = ",".join([f"{k} = ?"for k in data.keys()])
         print(keys)

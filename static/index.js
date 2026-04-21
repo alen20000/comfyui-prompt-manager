@@ -3,12 +3,12 @@ const btn_show_all_data = document.querySelector('#show_all_data');
 const cleaBtn = document.querySelector('#delect-display-content-btn');
 const data_body = document.querySelector('#data_body');
 const addBtn = document.getElementById('add_prompt-btn');
-
+const delete_btn = document.getElementById("delete_prompt-btn")
 
 /*工具區 */
 
-// 新增promt，打包資料成JSON物件準備送出
-function _getformdata(){
+// 新增函式，打包資料成JSON物件準備送出
+function _get_formdata(){
     const prompt_content = document.getElementById("field_prompt_content").value;
     const prompt_class = document.getElementById('prompt_class').value;
     const comment = document.getElementById('field_prompt_comment').value;
@@ -26,7 +26,16 @@ function _getformdata(){
     return payload;
 }
 
+//刪除函式
+function _delet_prompt(){
+    const prompt_ID = document.getElementById("field_id").value;
 
+    const payload = {
+        "id":prompt_ID
+    };
+    console.log("打包完成:", payload); //測試用
+    return payload;
+}
 
 
 btn_show_all_data.addEventListener('click', () =>{
@@ -61,15 +70,32 @@ cleaBtn.addEventListener('click', () =>{
 });
 
 
-
+//新增按鈕
 addBtn.addEventListener('click', async  () =>{
     //呼叫打包
-    const payload = _getformdata();  
+    const payload = _get_formdata();  
 
     const response = await fetch('/add_prompt', {
         method: 'POST', // 告訴後端我要「新增」東西
         headers: { 'Content-Type': 'application/json' }, // 告訴後端這是一封 JSON 格式的包裹，這行大家都複製的
         body: JSON.stringify(payload) // 把物件轉成「字串」，不然網路傳不動
     });
+
+});
+
+//刪除按鈕
+delete_btn.addEventListener('click', async ()=>{
+
+    const payload = _delet_prompt();
+
+    const response = await fetch('/delete_prompt',{
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+
+
+    });
+
+
 
 });

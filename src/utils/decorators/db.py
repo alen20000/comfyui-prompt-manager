@@ -1,6 +1,8 @@
 import sqlite3
 from functools import wraps
-
+'''
+TODO 以後能擴充除錯功能
+'''
 def db_operation(func):
     """統一處理 DB 例外，印出錯誤訊息後 re-raise"""
     @wraps(func)

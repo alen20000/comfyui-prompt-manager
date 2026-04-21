@@ -38,7 +38,14 @@ def add_prompt():
 
 @prompt_bp.route('/delete_prompt', methods=['DELETE'])
 def delete_prompt():
-    pass
+    data: dict = request.get_json()
+
+    db.delete_prompt(**data)
+    
+    return jsonify({
+        "status":"ok",
+        "message":"刪除成功"
+    })
 
 @prompt_bp.route('/update_prompt', methods=['PUT'])
 def update_prompt():
