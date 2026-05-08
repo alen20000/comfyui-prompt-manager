@@ -1,25 +1,37 @@
+# Prompt Manager
 
-
-#  提示詞小工具 (WIP)
----
-## Tech Stack Note
-
-* 使用語言: `Python` `HTML` `JavaScrip`
-* 前後端橋接: `Flask`
-* 資料庫: `SQLite`
-* UI: `HTML` `Bootstrap`
+個人用提示詞管理工具，為自己 ComfyUI AI 繪圖工作流使用的小資料庫。
 
 ---
-# 目的:
-- 1. 改善玩AI繪圖 `comfyui`時找提示詞效率 
-- 2. 學習Full-stack思維 
 
----
-#問題
-1. 空白時，按新增，會直接+入資料庫
----
-#TODO方向
-1. 指定關鍵字搜索功能
-2. 是否為單字，看能不能在整理成 詞組 或 單字 兩個分類
-3. html分類那邊，做成動態可增減的 或是要做一下影射
-4. UI排版還要優化
+## 功能
+- 新增 / 查詢 / 刪除提示詞
+- 依分類篩選（Quality / Style）
+- 標記是否為單字
+
+## Tech Stack
+| 類別 | 技術 |
+|---|---|
+| 後端 | Python、Flask |
+| 資料庫 | SQLite |
+| 前端 | HTML、Bootstrap、JavaScript |
+
+## TODO
+- [ ] update_prompt 路由補完
+- [ ] 關鍵字搜尋功能
+- [ ] 分類欄動態新增
+- [ ] UI 優化
+- [ ] 防呆輸入
+
+## 目前進度
+最後更新：2026-04-22
+
+已完成：
+- [x] Flask 基本架構
+- [x] SQLite 串接
+- [x] 基本新增 / 查詢 / 刪除 / 更改
+- [x] 點擊列表自動帶入欄位
+
+## 目前UI預覽
+
+![UI 預覽](docs/UI_img.png)
