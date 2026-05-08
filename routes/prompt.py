@@ -8,12 +8,12 @@ prompt_bp = Blueprint('prompt', __name__)
 db = Database()    
 
 
-# @prompt_bp.route('/', methods=['GET'])
-# def test_connection():
-#     '''
-#     Main page    
-#     '''
-#     return render_template('index.html')
+@prompt_bp.route('/', methods=['GET'])
+def test_connection():
+    '''
+    Main page    
+    '''
+    return render_template('index.html')
 
 @prompt_bp.route('/get_all_prompts', methods=['GET'])
 def get_all_prompts():
@@ -64,9 +64,9 @@ def update_prompt():
     更新 prompt 資料
     參數: ID 、要更新的欄位與數值
     '''
-    deta: dict = request.get_json()
+    data: dict = request.get_json()
 
-    db.update_prompt(**deta)
+    db.update_prompt(**data)
     
     return jsonify({
         "status":"ok",
