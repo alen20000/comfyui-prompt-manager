@@ -8,15 +8,20 @@ prompt_bp = Blueprint('prompt', __name__)
 db = Database()    
 
 
-@prompt_bp.route('/', methods=['GET'])
-def test_connection():
-    '''
-    Main page    
-    '''
-    return render_template('index.html')
+# @prompt_bp.route('/', methods=['GET'])
+# def test_connection():
+#     '''
+#     Main page    
+#     '''
+#     return render_template('index.html')
 
 @prompt_bp.route('/get_all_prompts', methods=['GET'])
 def get_all_prompts():
+    '''
+    查閱全部 prompt 資料
+
+    資料小時候，直接回傳全部資料，資料量大時，應該要加上分頁功能
+    '''
     raw_data = db.get_all_prompts()
 
     return jsonify({
@@ -27,6 +32,9 @@ def get_all_prompts():
 
 @prompt_bp.route('/add_prompt', methods=['POST'])
 def add_prompt():
+    '''
+    新增 prompt 資料
+    '''
     data: dict = request.get_json()
 
     db.add_prompt(**data)
@@ -38,6 +46,9 @@ def add_prompt():
 
 @prompt_bp.route('/delete_prompt', methods=['DELETE'])
 def delete_prompt():
+    '''
+    參數格式：{"id":<id>}  刪除指定ID的row
+    '''
     data: dict = request.get_json()
 
     db.delete_prompt(**data)
@@ -49,6 +60,9 @@ def delete_prompt():
 
 @prompt_bp.route('/update_prompt', methods=['PUT'])
 def update_prompt():
+    '''
+    更新 prompt 資料
+    '''
     pass
 
 # def delete_primpts():
