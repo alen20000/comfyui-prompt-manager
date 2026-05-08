@@ -62,7 +62,15 @@ def delete_prompt():
 def update_prompt():
     '''
     更新 prompt 資料
+    參數: ID 、要更新的欄位與數值
     '''
-    pass
+    deta: dict = request.get_json()
+
+    db.update_prompt(**deta)
+    
+    return jsonify({
+        "status":"ok",
+        "message":"更新成功"
+    })
 
 # def delete_primpts():
